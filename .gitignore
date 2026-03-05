@@ -1,0 +1,25 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+.vs/
+
+# Environment (credentials)
+.env
+.env.local
+.env.*.local
+
+# Output
+output/
+logs/
+*.log
+
+# Register file (local dev)
+.rts_laststart
+
+# IDE
+.idea/
+*.swp
+*.swo
