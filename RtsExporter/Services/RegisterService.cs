@@ -18,7 +18,10 @@ public class RegisterService
     public RegisterService()
     {
         _registryPath = EnvLoader.Get("REGISTRY_PATH", @"Software\RtsExporter");
-        _fallbackLastStart = EnvLoader.Get("LASTSTART_FALLBACK", "");
+        var fallback = EnvLoader.Get("LASTSTART_FALLBACK");
+        _fallbackLastStart = !string.IsNullOrWhiteSpace(fallback) 
+            ? fallback 
+            : EnvLoader.Get("LASTSTART", "");
         _fileFallbackPath = Path.Combine(
             Directory.GetCurrentDirectory(),
             EnvLoader.Get("REGISTER_FILE", ".rts_laststart"));

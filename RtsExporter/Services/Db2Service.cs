@@ -1,5 +1,4 @@
-using System.Data;
-using IBM.Data.DB2.Core;
+using System.Data.Odbc;
 using RtsExporter.Infrastructure;
 using RtsExporter.Models;
 using Serilog;
@@ -40,15 +39,15 @@ public class Db2Service
     {
         var records = new List<InvoiceRecord>();
 
-        await using var connection = new DB2Connection(_connectionString);
+        await using var connection = new OdbcConnection(_connectionString);
         await connection.OpenAsync(ct);
 
-        Log.Information("Connecting to DB2...");
+        Log.Information("Connecting to DB2 (ODBC)...");
         Log.Information("DB connection success");
 
-        await using var command = new DB2Command(SqlQuery, connection);
-        command.Parameters.Add(new DB2Parameter("LASTSTART", lastStart));
-        command.Parameters.Add(new DB2Parameter("CURRSTART", currStart));
+        await using var command = new OdbcCommand(SqlQuery, connection);
+        command.Parameters.AddWithValue("@lastStart", lastStart);
+        command.Parameters.AddWithValue("@currStart", currStart);
 
         await using var reader = await command.ExecuteReaderAsync(ct);
 

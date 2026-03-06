@@ -19,6 +19,9 @@ logs/
 # Register file (local dev)
 .rts_laststart
 
+# macOS
+.DS_Store
+
 # IDE
 .idea/
 *.swp

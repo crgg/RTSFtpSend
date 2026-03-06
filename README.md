@@ -13,12 +13,8 @@ A .NET 8 Console Application that exports invoice data from DB2 to CSV and uploa
 Copy `.env` to the project root and configure:
 
 ```env
-# DB2 (DB_HOST or DB2_HOST, DB_NAME or DB2_DB, etc.)
-DB_HOST=your-db-host
-DB_PORT=50000
-DB_NAME=your-database
-DB_USER=your-user
-DB_PASSWORD=your-password
+# DB2 via ODBC DSN (configurar DSN en Windows por servidor)
+DSN=RG3
 
 FTP_HOST=ftp.example.com
 FTP_USER=your-ftp-user
